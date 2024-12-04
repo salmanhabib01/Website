@@ -1,0 +1,53 @@
+---
+title: "Assignment 2"
+author: "Salman Bin Habib"
+format: html
+editor: visual
+---
+```{r}
+
+library(gtrendsR)
+
+# Run the Google Trends query
+HarrisTrumpElection <- gtrends(
+  c("Trump", "Harris", "election"), 
+  time = "2024-01-01 2024-10-01"
+)
+
+# Extract interest over time
+Harris_Trump_Election_interest_over_time <- HarrisTrumpElection$interest_over_time
+
+# Split the data by search terms
+trump_data <- subset(Harris_Trump_Election_interest_over_time, keyword == "Trump")
+harris_data <- subset(Harris_Trump_Election_interest_over_time, keyword == "Harris")
+election_data <- subset(Harris_Trump_Election_interest_over_time, keyword == "election")
+
+# Plot the data
+par(family = "serif")  # Use a generic serif font
+plot(
+  trump_data$date, trump_data$hits, 
+  type = "l", col = "blue", 
+  xlab = "Date", ylab = "Search Interest", 
+  main = "Google Trends: Trump, Harris, and Election",
+  lwd = 2  # Line width
+)
+
+# Add Harris data (red line)
+lines(
+  harris_data$date, harris_data$hits, 
+  col = "red", lwd = 2
+)
+
+# Add Election data (green line)
+lines(
+  election_data$date, election_data$hits, 
+  col = "green", lwd = 2
+)
+
+# Add a legend
+legend(
+  "topright", legend = c("Trump", "Harris", "Election"), 
+  col = c("blue", "red", "green"), lty = 1, lwd = 2
+)
+
+```

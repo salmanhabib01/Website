@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "Assignments/Assignment 2.html",
+    "href": "Assignments/Assignment 2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "library(gtrendsR)\n\nWarning: package 'gtrendsR' was built under R version 4.4.2\n\n# Run the Google Trends query\nHarrisTrumpElection &lt;- gtrends(\n  c(\"Trump\", \"Harris\", \"election\"), \n  time = \"2024-01-01 2024-10-01\"\n)\n\n# Extract interest over time\nHarris_Trump_Election_interest_over_time &lt;- HarrisTrumpElection$interest_over_time\n\n# Split the data by search terms\ntrump_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"Trump\")\nharris_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"Harris\")\nelection_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"election\")\n\n# Plot the data\npar(family = \"serif\")  # Use a generic serif font\nplot(\n  trump_data$date, trump_data$hits, \n  type = \"l\", col = \"blue\", \n  xlab = \"Date\", ylab = \"Search Interest\", \n  main = \"Google Trends: Trump, Harris, and Election\",\n  lwd = 2  # Line width\n)\n\n# Add Harris data (red line)\nlines(\n  harris_data$date, harris_data$hits, \n  col = \"red\", lwd = 2\n)\n\n# Add Election data (green line)\nlines(\n  election_data$date, election_data$hits, \n  col = \"green\", lwd = 2\n)\n\n# Add a legend\nlegend(\n  \"topright\", legend = c(\"Trump\", \"Harris\", \"Election\"), \n  col = c(\"blue\", \"red\", \"green\"), lty = 1, lwd = 2\n)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "Assignments/Assignment_2.html",
+    "href": "Assignments/Assignment_2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "library(gtrendsR)\n\nWarning: package 'gtrendsR' was built under R version 4.4.2\n\n# Run the Google Trends query\nHarrisTrumpElection &lt;- gtrends(\n  c(\"Trump\", \"Harris\", \"election\"), \n  time = \"2024-01-01 2024-10-01\"\n)\n\n# Extract interest over time\nHarris_Trump_Election_interest_over_time &lt;- HarrisTrumpElection$interest_over_time\n\n# Split the data by search terms\ntrump_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"Trump\")\nharris_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"Harris\")\nelection_data &lt;- subset(Harris_Trump_Election_interest_over_time, keyword == \"election\")\n\n# Plot the data\npar(family = \"serif\")  # Use a generic serif font\nplot(\n  trump_data$date, trump_data$hits, \n  type = \"l\", col = \"blue\", \n  xlab = \"Date\", ylab = \"Search Interest\", \n  main = \"Google Trends: Trump, Harris, and Election\",\n  lwd = 2  # Line width\n)\n\n# Add Harris data (red line)\nlines(\n  harris_data$date, harris_data$hits, \n  col = \"red\", lwd = 2\n)\n\n# Add Election data (green line)\nlines(\n  election_data$date, election_data$hits, \n  col = \"green\", lwd = 2\n)\n\n# Add a legend\nlegend(\n  \"topright\", legend = c(\"Trump\", \"Harris\", \"Election\"), \n  col = c(\"blue\", \"red\", \"green\"), lty = 1, lwd = 2\n)"
+  }
+]
