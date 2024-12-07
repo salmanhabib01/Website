@@ -19,5 +19,82 @@
     "title": "Assignment4",
     "section": "",
     "text": "library(tidyverse)\n\nWarning: package 'tidyverse' was built under R version 4.4.2\n\n\nWarning: package 'ggplot2' was built under R version 4.4.2\n\n\nWarning: package 'tibble' was built under R version 4.4.2\n\n\nWarning: package 'tidyr' was built under R version 4.4.2\n\n\nWarning: package 'readr' was built under R version 4.4.2\n\n\nWarning: package 'purrr' was built under R version 4.4.2\n\n\nWarning: package 'dplyr' was built under R version 4.4.2\n\n\nWarning: package 'forcats' was built under R version 4.4.2\n\n\nWarning: package 'lubridate' was built under R version 4.4.2\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(rvest)\n\nWarning: package 'rvest' was built under R version 4.4.2\n\n\n\nAttaching package: 'rvest'\n\nThe following object is masked from 'package:readr':\n\n    guess_encoding\n\nurl &lt;- 'https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves'\nwikiforreserve &lt;- read_html(url)\n\nforeignreserve &lt;- wikiforreserve %&gt;%\n  html_nodes(xpath='//*[@id=\"mw-content-text\"]/div[1]/table[1]') %&gt;%\n  html_table()\n\nfores = foreignreserve[[1]][,c(1, 2,3,4,5,6,7,8)]\nnames(fores) &lt;- c(\"Country\", \"Forexreswithgold\", \"Date1\", \"Change1\", \"Forexreswithoutgold\", \"Date2\", \"Change2\", \"Sources\")\n\nfores$Date1 = as.Date(fores$Date1, format = \"%d %b %Y\")\n\nwrite.csv(fores, \"fores.csv\", row.names = FALSE)\n\n\nlibrary(tidyverse)\nlibrary(rvest)\n\n\nurl &lt;- 'https://en.wikipedia.org/wiki/List_of_countries_by_foreign-exchange_reserves'\n\n\nwikiforreserve &lt;- read_html(url)\n\ntables &lt;- wikiforreserve %&gt;% \n  html_nodes(\"table\") %&gt;% \n  html_table(fill = TRUE)\n\nforeign_reserve &lt;- tables[[1]]\n\ncolnames(foreign_reserve) &lt;- c(\"Country\", \"ForexResWithGold\", \"Date1\", \"Change1\", \n                               \"ForexResWithoutGold\", \"Date2\", \"Change2\", \"Source\")\nforeign_reserve$Date1 &lt;- as.Date(foreign_reserve$Date1, format = \"%d %b %Y\")\n\nwrite.csv(foreign_reserve, \"foreign_reserve.csv\", row.names = FALSE)\n\nfor (i in 2:length(tables)) {\n  table &lt;- tables[[i]]\n  write.csv(table, paste0(\"table_\", i, \".csv\"), row.names = FALSE)\n}\n\n\ngc(reset=T)\n\n          used (Mb) gc trigger  (Mb) max used (Mb)\nNcells 1043608 55.8    2116598 113.1  1043608 55.8\nVcells 1809108 13.9    8388608  64.0  1809108 13.9\n\nlibrary(purrr)\nlibrary(magrittr)\n\n\nAttaching package: 'magrittr'\n\n\nThe following object is masked from 'package:purrr':\n\n    set_names\n\n\nThe following object is masked from 'package:tidyr':\n\n    extract\n\nsetwd(\"D:\\\\Salman's Website\\\\\")\nlibrary(rjson)\nlibrary(jsonlite)\n\n\nAttaching package: 'jsonlite'\n\n\nThe following objects are masked from 'package:rjson':\n\n    fromJSON, toJSON\n\n\nThe following object is masked from 'package:purrr':\n\n    flatten\n\nlibrary(data.table)\n\nWarning: package 'data.table' was built under R version 4.4.2\n\n\n\nAttaching package: 'data.table'\n\n\nThe following objects are masked from 'package:lubridate':\n\n    hour, isoweek, mday, minute, month, quarter, second, wday, week,\n    yday, year\n\n\nThe following objects are masked from 'package:dplyr':\n\n    between, first, last\n\n\nThe following object is masked from 'package:purrr':\n\n    transpose\n\nlibrary(readr)\n\ngovfiles= read.csv(file=\"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_10_42.csv\", skip=2)\n\ngf_list &lt;- rjson::fromJSON(file =\"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_18_29.json\")\ngovfile2=dplyr::bind_rows(gf_list$resultSet)\n\ngf_list1 = jsonlite::read_json(\"https://github.com/datageneration/datamethods/raw/refs/heads/master/webdata/govinfo-search-results-2024-10-13T07_18_29.json\")\n\ngovfiles3 &lt;- gf_list1$resultSet\n\ngovfiles3 &lt;- gf_list1$resultSet |&gt; dplyr::bind_rows()\n\ngovfiles$id = govfiles$packageId\npdf_govfiles_url = govfiles$pdfLink\npdf_govfiles_id &lt;- govfiles$id\n\n\nsave_dir &lt;- \"D:\\\\Salman's Website\\\\\"\n\ndownload_govfiles_pdf &lt;- function(url, id) {\n  tryCatch({\n    destfile &lt;- paste0(save_dir, \"govfiles_\", id, \".pdf\")\n    download.file(url, destfile = destfile, mode = \"wb\") \n    Sys.sleep(runif(1, 1, 3)) \n    return(paste(\"Successfully downloaded:\", url))\n  },\n  error = function(e) {\n    return(paste(\"Failed to download:\", url))\n  })\n}\n\nstart.time &lt;- Sys.time()\nmessage(\"Starting downloads\")\n\nStarting downloads\n\nresults &lt;- 1:1 %&gt;% \n  purrr::map_chr(~ download_govfiles_pdf(pdf_govfiles_url[.], pdf_govfiles_id[.]))\nmessage(\"Finished downloads\")\n\nFinished downloads\n\nend.time &lt;- Sys.time()\ntime.taken &lt;- end.time - start.time\ntime.taken\n\nTime difference of 1.011557 mins\n\nstart.time &lt;- Sys.time()\nmessage(\"Starting downloads\")\n\nStarting downloads\n\nresults &lt;- 1:length(pdf_govfiles_url) %&gt;% \n  purrr::map_chr(~ download_govfiles_pdf(pdf_govfiles_url[.], pdf_govfiles_id[.]))\n\nWarning in download.file(url, destfile = destfile, mode = \"wb\"): downloaded\nlength 144830998 != reported length 424775211\n\n\nWarning in download.file(url, destfile = destfile, mode = \"wb\"): URL\n'https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf':\nTimeout of 60 seconds was reached\n\nmessage(\"Finished downloads\")\n\nFinished downloads\n\nend.time &lt;- Sys.time()\ntime.taken &lt;- end.time - start.time\ntime.taken\n\nTime difference of 2.12333 mins\n\nprint(results)\n\n[1] \"Failed to download: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf\" \n[2] \"Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20818OvI/pdf/CPRT-95JPRT20818OvI.pdf\"\n[3] \"Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-109JPRT25514/pdf/CPRT-109JPRT25514.pdf\"    \n[4] \"Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT28545/pdf/CPRT-115SPRT28545.pdf\"    \n[5] \"Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT23704/pdf/CPRT-115SPRT23704.pdf\"    \n\n\nDuring the scraping process, several challenges were encountered, including inconsistent data formatting between the CSV and JSON files, missing or null values in some fields, and occasional rate-limiting during batch downloads. The scraped data is generally usable but requires preprocessing, such as cleaning column names, handling missing values, and ensuring consistency between different data sources. The extracted PDF links and metadata are valuable for further analysis, but the usability of the downloaded files depends on the quality and structure of the PDFs. To improve, we could implement better error handling, automate data cleaning steps, and optimize the download process with parallelization or by handling rate-limiting more effectively. Using tools like APIs or web drivers for dynamic content and adding validation checks for data integrity would also enhance the efficiency and reliability of the scraping process."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "Photo of Salman Bin Habib\n\n\nHello! I’m Salman Bin Habib, a dedicated PhD candidate in Public and Nonprofit Management at the University of Texas at Dallas, with a sharp focus on nonprofit financial health, fundraising efficiency, and blockchain policy. My work blends rigorous academic research with real-world applications to improve nonprofit performance and community impact.\n\n\n\nWith a robust foundation in both qualitative and quantitative research, I specialize in: - Measuring fundraising efficiency and nonprofit financial health. - Utilizing advanced data analysis tools, including Python, R, SPSS, and STATA. - Exploring the intersection of technology, policy, and public service, such as blockchain’s impact on nonprofit management.\nMy research and professional journey are driven by a passion for creating innovative solutions to public and nonprofit sector challenges.\n\n\n\nEducation: PhD in Public and Nonprofit Management (GPA: 4.0/4.0), MS in Marketing Research & Analysis, and BBA in Marketing.\nResearch: Contributions to topics like homelessness migration, blockchain policy, and charity culture and community ratings.\nSkills: Regression analysis, sentiment analysis, data visualization, and policy evaluation.\n\nLearn more about my work →\n\n\n\n\n\nHere are some of the areas I am actively working on: 1. Nonprofit Financial Health: Investigating how financial health influences nonprofit performance and community impact. 2. Blockchain and Public Policy: Understanding the implications of blockchain technology on state-level laws and nonprofit operations. 3. Homelessness Migration: Analyzing migration patterns in Texas and their effects on public service delivery.\n\n\n\n\n\nProgramming Languages: Python, R, STATA, SPSS\nData Analysis: Regression, K-means Clustering, Factor Analysis, Sentiment Analysis\nVisualization Tools: Power BI, Tableau, Excel\n\n\n\n\n\nI am always open to collaborations, discussions, and opportunities to share knowledge. Feel free to reach out!\n\nEmail: Salman.Habib@UTDallas.edu\n\nGitHub: github.com/salmanhabib01\n\nLinkedIn: linkedin.com/in/salmanbinhabib\n\n\nThank you for visiting my website! Stay tuned for updates and new projects."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "With a robust foundation in both qualitative and quantitative research, I specialize in: - Measuring fundraising efficiency and nonprofit financial health. - Utilizing advanced data analysis tools, including Python, R, SPSS, and STATA. - Exploring the intersection of technology, policy, and public service, such as blockchain’s impact on nonprofit management.\nMy research and professional journey are driven by a passion for creating innovative solutions to public and nonprofit sector challenges.\n\n\n\nEducation: PhD in Public and Nonprofit Management (GPA: 4.0/4.0), MS in Marketing Research & Analysis, and BBA in Marketing.\nResearch: Contributions to topics like homelessness migration, blockchain policy, and charity culture and community ratings.\nSkills: Regression analysis, sentiment analysis, data visualization, and policy evaluation.\n\nLearn more about my work →"
+  },
+  {
+    "objectID": "index.html#research-projects",
+    "href": "index.html#research-projects",
+    "title": "About",
+    "section": "",
+    "text": "Here are some of the areas I am actively working on: 1. Nonprofit Financial Health: Investigating how financial health influences nonprofit performance and community impact. 2. Blockchain and Public Policy: Understanding the implications of blockchain technology on state-level laws and nonprofit operations. 3. Homelessness Migration: Analyzing migration patterns in Texas and their effects on public service delivery."
+  },
+  {
+    "objectID": "index.html#skills-and-tools",
+    "href": "index.html#skills-and-tools",
+    "title": "About",
+    "section": "",
+    "text": "Programming Languages: Python, R, STATA, SPSS\nData Analysis: Regression, K-means Clustering, Factor Analysis, Sentiment Analysis\nVisualization Tools: Power BI, Tableau, Excel"
+  },
+  {
+    "objectID": "index.html#connect-with-me",
+    "href": "index.html#connect-with-me",
+    "title": "About",
+    "section": "",
+    "text": "I am always open to collaborations, discussions, and opportunities to share knowledge. Feel free to reach out!\n\nEmail: Salman.Habib@UTDallas.edu\n\nGitHub: github.com/salmanhabib01\n\nLinkedIn: linkedin.com/in/salmanbinhabib\n\n\nThank you for visiting my website! Stay tuned for updates and new projects."
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Download My Resume (PDF)\n\n\n\nPhD in Public and Nonprofit Management\nUniversity of Texas at Dallas\n\n\n\n\n\nTeaching Assistant\nConducted research on blockchain policy and nonprofit finance."
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Resume",
+    "section": "",
+    "text": "PhD in Public and Nonprofit Management\nUniversity of Texas at Dallas"
+  },
+  {
+    "objectID": "resume.html#professional-experience",
+    "href": "resume.html#professional-experience",
+    "title": "Resume",
+    "section": "",
+    "text": "Teaching Assistant\nConducted research on blockchain policy and nonprofit finance."
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Get in Touch\nFeel free to reach out via email or connect on social media.\n\nEmail: Salman.Habib@UTDallas.edu\nGitHub: github.com/salmanhabib01\nLinkedIn: linkedin.com/in/salmanbinhabib"
+  },
+  {
+    "objectID": "gallery.html",
+    "href": "gallery.html",
+    "title": "Gallery",
+    "section": "",
+    "text": "Nonprofit Financial Health Analysis\nBlockchain Policy Research\nHomelessness Migration Patterns in Texas"
+  },
+  {
+    "objectID": "gallery.html#featured-projects",
+    "href": "gallery.html#featured-projects",
+    "title": "Gallery",
+    "section": "",
+    "text": "Nonprofit Financial Health Analysis\nBlockchain Policy Research\nHomelessness Migration Patterns in Texas"
   }
 ]
