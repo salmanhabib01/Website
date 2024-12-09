@@ -1,0 +1,69 @@
+---
+title: "Resume"
+format: html
+---
+
+
+[Download My Resume (PDF)](files/Resume_V1.pdf)
+
+---
+
+## Education
+
+- **PhD in Public and Nonprofit Management**  
+  University of Texas at Dallas (Aug 2023 – Jul 2027)  
+  GPA: 4.0/4.0  
+  Relevant Coursework: Research Design, Methods of Data Collection, Financial Management for Nonprofits  
+
+- **MS in Marketing Research & Analysis**  
+  Texas State University (Aug 2021 – Jul 2023)  
+  GPA: 3.7/4.0 | Honors: Beta Gamma Sigma  
+
+- **BBA in Marketing**  
+  North South University (Sept 2012 – Aug 2019)  
+  GPA: 3.5/4.0  
+
+---
+
+## Professional Experience
+
+- **Teaching Assistant**  
+  University of Texas at Dallas (Aug 2023 – Present)  
+  Conducted data analysis for blockchain and nonprofit research; prepared visualizations and literature reviews.  
+
+- **Marketing Intern**  
+  Abracon LLC (Feb 2023 – July 2023)  
+  Created promotional materials and optimized SEO for improved content performance.  
+
+- **Social Media Marketing Analyst**  
+  Texas State University (Jun 2022 – Jan 2023)  
+  Boosted website traffic 10x through effective content strategies and event planning.  
+
+---
+
+## Research Experience
+
+- **Exploring Homelessness Migration in Texas and Its Implications for Public Service**  
+  Presented at ASPA Conference, Washington, DC (April 2025).  
+
+- **Partisan Pathways: Exploring State-Level Politics in Blockchain and Cryptocurrency Laws**  
+  Presented at SPSA Conference, San Juan, PR (January 2025).  
+
+- **Currency of Culture: Impacts of Charity Navigator's 'Culture and Community' Beacon**  
+  Presented at ARNOVA Conference, Washington, DC (November 2024).  
+
+---
+
+## Skills
+
+- **Programming Languages**: Python, R, STATA, SPSS  
+- **Data Analysis**: Regression, K-means Clustering, Survey Design  
+- **Data Visualization**: Power BI, Tableau, Excel  
+
+---
+
+## Honors
+
+- Beta Gamma Sigma (March 2022 – Present)  
+- H.C. Vivian Memorial Endowment Scholarship (Aug 2022 – May 2023)  
+- Treasurer, Texas State Bangladesh Student Association (Oct 2022 – Aug 2023)  
