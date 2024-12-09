@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Salman Bin Habib">
 
-<title>Assignment4 – Salman Bin Habib</title>
+<title>Assignment 4 – Salman Bin Habib</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,9 +100,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<!-- Google Fonts -->
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
 
 
-<link rel="stylesheet" href="styles.css">
+
+<!-- Metadata for SEO -->
+
+<meta name="author" content="Salman Bin Habib">
+
+<meta name="description" content="Portfolio and research site of Salman Bin Habib showcasing expertise in nonprofit research, blockchain policy, and public administration.">
+
+<meta name="keywords" content="Salman Bin Habib, nonprofit research, blockchain policy, public administration, data visualization, public affairs">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<!-- Favicon -->
+
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+
+
+<!-- Custom JavaScript -->
+
+<script>
+
+  // Display a message in the browser console when the page is fully loaded
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    console.log("Welcome to Salman Bin Habib's portfolio website!");
+
+  });
+
+</script>
+
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -128,6 +165,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Portfolio</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-portfolio">    
+        <li>
+    <a class="dropdown-item" href="../resume.html">
+ <span class="dropdown-text">Resume</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../gallery.html">
+ <span class="dropdown-text">Gallery</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-collection-and-production-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Data Collection and Production Assignments</span>
     </a>
@@ -146,6 +198,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -165,19 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment4</h1>
+<h1 class="title">Assignment 4</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Salman Bin Habib </p>
-          </div>
-  </div>
     
   
     
@@ -286,8 +336,8 @@ The following object is masked from 'package:readr':
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>(<span class="at">reset=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          used (Mb) gc trigger  (Mb) max used (Mb)
-Ncells 1043608 55.8    2116598 113.1  1043608 55.8
-Vcells 1809108 13.9    8388608  64.0  1809108 13.9</code></pre>
+Ncells 1043644 55.8    2116648 113.1  1043644 55.8
+Vcells 1809429 13.9    8388608  64.0  1809429 13.9</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -384,50 +434,66 @@ Attaching package: 'data.table'</code></pre>
 <pre><code>Starting downloads</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="sc">~</span> <span class="fu">download_govfiles_pdf</span>(pdf_govfiles_url[.], pdf_govfiles_id[.]))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Finished downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Finished downloads</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>time.taken <span class="ot">&lt;-</span> end.time <span class="sc">-</span> start.time</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>time.taken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 1.011557 mins</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Starting downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Starting downloads</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(pdf_govfiles_url) <span class="sc">%&gt;%</span> </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="sc">~</span> <span class="fu">download_govfiles_pdf</span>(pdf_govfiles_url[.], pdf_govfiles_id[.]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="sc">~</span> <span class="fu">download_govfiles_pdf</span>(pdf_govfiles_url[.], pdf_govfiles_id[.]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in download.file(url, destfile = destfile, mode = "wb"): downloaded
-length 144830998 != reported length 424775211</code></pre>
+length 2764800 != reported length 424775211</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in download.file(url, destfile = destfile, mode = "wb"): URL
 'https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf':
 Timeout of 60 seconds was reached</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Finished downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Finished downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Finished downloads</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>time.taken <span class="ot">&lt;-</span> end.time <span class="sc">-</span> start.time</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>time.taken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>time.taken <span class="ot">&lt;-</span> end.time <span class="sc">-</span> start.time</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>time.taken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 2.12333 mins</code></pre>
+<pre><code>Time difference of 1.001724 mins</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Starting downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Starting downloads</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(pdf_govfiles_url) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_chr</span>(<span class="sc">~</span> <span class="fu">download_govfiles_pdf</span>(pdf_govfiles_url[.], pdf_govfiles_id[.]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in download.file(url, destfile = destfile, mode = "wb"): downloaded
+length 13780648 != reported length 424775211
+Warning in download.file(url, destfile = destfile, mode = "wb"): URL
+'https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf':
+Timeout of 60 seconds was reached</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in download.file(url, destfile = destfile, mode = "wb"): downloaded
+length 13901606 != reported length 413579288</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in download.file(url, destfile = destfile, mode = "wb"): URL
+'https://www.govinfo.gov/content/pkg/CPRT-95JPRT20818OvI/pdf/CPRT-95JPRT20818OvI.pdf':
+Timeout of 60 seconds was reached</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Finished downloads"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Finished downloads</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>time.taken <span class="ot">&lt;-</span> end.time <span class="sc">-</span> start.time</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>time.taken</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Failed to download: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf" 
-[2] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20818OvI/pdf/CPRT-95JPRT20818OvI.pdf"
-[3] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-109JPRT25514/pdf/CPRT-109JPRT25514.pdf"    
-[4] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT28545/pdf/CPRT-115SPRT28545.pdf"    
-[5] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT23704/pdf/CPRT-115SPRT23704.pdf"    </code></pre>
+<pre><code>Time difference of 2.721231 mins</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Failed to download: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20039OvIII/pdf/CPRT-95JPRT20039OvIII.pdf"
+[2] "Failed to download: https://www.govinfo.gov/content/pkg/CPRT-95JPRT20818OvI/pdf/CPRT-95JPRT20818OvI.pdf"    
+[3] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-109JPRT25514/pdf/CPRT-109JPRT25514.pdf"   
+[4] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT28545/pdf/CPRT-115SPRT28545.pdf"   
+[5] "Successfully downloaded: https://www.govinfo.gov/content/pkg/CPRT-115SPRT23704/pdf/CPRT-115SPRT23704.pdf"   </code></pre>
 </div>
 </div>
 <p>During the scraping process, several challenges were encountered, including inconsistent data formatting between the CSV and JSON files, missing or null values in some fields, and occasional rate-limiting during batch downloads. The scraped data is generally usable but requires preprocessing, such as cleaning column names, handling missing values, and ensuring consistency between different data sources. The extracted PDF links and metadata are valuable for further analysis, but the usability of the downloaded files depends on the quality and structure of the PDFs. To improve, we could implement better error handling, automate data cleaning steps, and optimize the download process with parallelization or by handling rate-limiting more effectively. Using tools like APIs or web drivers for dynamic content and adding validation checks for data integrity would also enhance the efficiency and reliability of the scraping process.</p>
