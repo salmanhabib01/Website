@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Salman Bin Habib">
 
-<title>About – Salman Bin Habib</title>
+<title>Salman Bin Habib</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <!-- Google Fonts -->
 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
 
 
 
@@ -101,6 +100,48 @@ ul.task-list li input[type="checkbox"] {
 
     console.log("Welcome to Salman Bin Habib's portfolio website!");
 
+
+
+    // Auto-scroll logic for the photo reel
+
+    const photoReel = document.querySelector('.photo-reel');
+
+    if (photoReel) {
+
+      let scrollPosition = 0;
+
+      const scrollSpeed = 1; // Pixels to scroll per interval
+
+      const scrollInterval = 20; // Interval in milliseconds
+
+
+
+      function autoScroll() {
+
+        scrollPosition += scrollSpeed;
+
+        photoReel.scrollLeft = scrollPosition;
+
+
+
+        // Reset scroll position when reaching the end
+
+        if (scrollPosition >= photoReel.scrollWidth - photoReel.clientWidth) {
+
+          scrollPosition = 0;
+
+        }
+
+      }
+
+
+
+      // Start auto-scrolling
+
+      setInterval(autoScroll, scrollInterval);
+
+    }
+
   });
 
 </script>
@@ -127,10 +168,6 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">About</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Portfolio</span>
@@ -185,61 +222,57 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome-to-my-website" id="toc-welcome-to-my-website" class="nav-link active" data-scroll-target="#welcome-to-my-website">Welcome to My Website</a>
-  <ul class="collapse">
-  <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About Me</a>
+  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a></li>
+  <li><a href="#photo-reel" id="toc-photo-reel" class="nav-link" data-scroll-target="#photo-reel">Photo Reel</a>
   <ul class="collapse">
   <li><a href="#key-highlights" id="toc-key-highlights" class="nav-link" data-scroll-target="#key-highlights">Key Highlights:</a></li>
   </ul></li>
   <li><a href="#research-projects" id="toc-research-projects" class="nav-link" data-scroll-target="#research-projects">Research &amp; Projects</a></li>
   <li><a href="#skills-and-tools" id="toc-skills-and-tools" class="nav-link" data-scroll-target="#skills-and-tools">Skills and Tools</a></li>
   <li><a href="#connect-with-me" id="toc-connect-with-me" class="nav-link" data-scroll-target="#connect-with-me">Connect with Me</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About</h1>
+
+
+
+<div class="home-title">
+Welcome to Habib’s website
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Salman Bin Habib </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="welcome-to-my-website" class="level1">
-<h1>Welcome to My Website</h1>
-<div class="quarto-figure quarto-figure-center" style="float: left; margin-right: 20px;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Salman_Habib.jpg" class="img-circle img-fluid figure-img" width="150"></p>
-<figcaption>Photo of Salman Bin Habib</figcaption>
+<p><img src="images/Salman_Habib.jpg" class="img-circle img-fluid quarto-figure quarto-figure-center figure-img" style="float: left; margin-right: 20px;" width="336"></p>
 </figure>
 </div>
-<p>Hello! I’m <strong>Salman Bin Habib</strong>, a second-year PhD student in Public Affairs at the University of Texas at Dallas, with a sharp focus on <strong>nonprofit financial health</strong>, <strong>fundraising efficiency</strong>, and <strong>blockchain policy</strong>. My work blends rigorous academic research with real-world applications to improve nonprofit performance and community impact.</p>
+<p>Hi, I’m Salman Bin Habib, a second-year Ph.D.&nbsp;student in <em>Public Affairs</em> at the <em>University of Texas at Dallas</em>. My academic journey is deeply rooted in a passion for advancing the <strong>financial health</strong>, <strong>fundraising efficiency</strong>, and <strong>policy frameworks</strong> of nonprofit organizations and local government. By integrating rigorous research with practical applications, I aim to bridge the gap between theory and real-world challenges, driving meaningful improvements in nonprofit performance and community impact.</p>
+<p>My perspective is shaped not only by academic pursuits but also by professional experience in <strong>sales and marketing</strong> within the private sector. This background has given me a unique lens to analyze organizational efficiency, resource optimization, and strategic communication—skills I now apply to nonprofit research and policy design. I believe that insights from the private sector can inspire innovative approaches to fundraising, stakeholder engagement, and financial sustainability in the nonprofit world.</p>
+<p>Additionally, my research explores cutting-edge areas like <strong>blockchain policy</strong>, emphasizing its potential to revolutionize transparency and trust within the nonprofit sector. My mission is to empower organizations to thrive financially while maximizing their cultural and social contributions.</p>
+<p>Let’s connect and make an impact together!</p>
 <hr>
 <section id="about-me" class="level2">
 <h2 class="anchored" data-anchor-id="about-me">About Me</h2>
-<p>With a robust foundation in both qualitative and quantitative research, I specialize in: - Measuring <strong>Financial Health</strong> and <strong>Sentiment Analysis</strong>. - Utilizing advanced data analysis tools, including <strong>STATA</strong>, <strong>R</strong>, <strong>Python</strong>, and <strong>SPSS</strong>. - Exploring the intersection of technology, policy, and public service, such as blockchain’s impact on nonprofit management.</p>
-<p>My research and professional journey are driven by a passion for creating innovative solutions to public and nonprofit sector challenges.</p>
+<p>I’m a proud <strong>Bengali</strong> from Dhaka, the bustling capital of Bangladesh—a small but densely populated country, with over 200 million people (more than Russia, Australia, and Canada combined!). As an only child, I’ve been both spoiled and showered with unconditional love by my amazing parents, who are my biggest cheerleaders and the foundation of everything I’ve accomplished. In 2023, I married the love of my life, <strong>Nabila Parijat</strong>, who also happens to be a fellow Ph.D.&nbsp;student in Public Affairs at UTD! I’m a big foodie and can never say no to fried chicken, whether it’s from Church’s, Dave’s, Jollibee, or Korean spots. When I’m not working, you’ll probably find me rewatching FRIENDS, diving into Korean movies, or enjoying long drives across the beautiful Texas. I also spend way too much time laughing at Conan O’Brien’s skits with Jordan Schlansky on YouTube. Can life BE any better than this?</p>
+<hr>
+</section>
+<section id="photo-reel" class="level2">
+<h2 class="anchored" data-anchor-id="photo-reel">Photo Reel</h2>
+<div class="photo-reel">
+<div class="photo">
+<pre><code>&lt;img src="images/Salman and Nabila Wedding.jpg" alt="Photo 1"&gt;</code></pre>
+</div>
+<div class="photo">
+<pre><code>&lt;img src="images/Salmans Graduation Texas State University.jpg" alt="Photo 2"&gt;</code></pre>
+</div>
+<div class="photo">
+<pre><code>&lt;img src="images/Salman with Carlton.jpg" alt="Photo 3"&gt;</code></pre>
+</div>
+<div class="photo">
+<pre><code>&lt;img src="images/Salman with Parents on Wedding.jpg" alt="Photo 4"&gt;</code></pre>
+</div>
+</div>
 <hr>
 <section id="key-highlights" class="level3">
 <h3 class="anchored" data-anchor-id="key-highlights">Key Highlights:</h3>
@@ -254,7 +287,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="research-projects" class="level2">
 <h2 class="anchored" data-anchor-id="research-projects">Research &amp; Projects</h2>
-<p>Here are some of the areas I am actively working on: 1. <strong>Nonprofit Financial Health</strong>: Investigating how financial health influences nonprofit performance and community impact. 2. <strong>Blockchain and Public Policy</strong>: Understanding the implications of blockchain technology on state-level laws and nonprofit operations. 3. <strong>Homelessness Migration</strong>: Analyzing migration patterns in Texas and their effects on public service delivery.</p>
+<p><em>Here are some of the areas I am actively working on:</em></p>
+<ul>
+<li><strong>Nonprofit Financial Health</strong>: Investigating how financial health influences nonprofit performance and community impact.</li>
+<li><strong>Blockchain and Public Policy</strong>: Understanding the implications of blockchain technology on state-level laws and nonprofit operations.</li>
+<li><strong>Homelessness Migration</strong>: Analyzing migration patterns in Texas and their effects on public service delivery.</li>
+</ul>
 <hr>
 </section>
 <section id="skills-and-tools" class="level2">
@@ -282,7 +320,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Thank you for visiting my website! Stay tuned for updates and new projects.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
