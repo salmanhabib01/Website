@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <!-- Google Fonts -->
 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
 
 
 
@@ -94,11 +94,51 @@ ul.task-list li input[type="checkbox"] {
 
 <script>
 
-  // Display a message in the browser console when the page is fully loaded
-
   document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Welcome to Salman Bin Habib's portfolio website!");
+
+
+
+    // Auto-scroll logic for the photo reel
+
+    const photoReel = document.querySelector('.photo-reel');
+
+    if (photoReel) {
+
+      let scrollPosition = 0;
+
+      const scrollSpeed = 1; // Pixels to scroll per interval
+
+      const scrollInterval = 20; // Interval in milliseconds
+
+
+
+      function autoScroll() {
+
+        scrollPosition += scrollSpeed;
+
+        photoReel.scrollLeft = scrollPosition;
+
+
+
+        // Reset scroll position when reaching the end
+
+        if (scrollPosition >= photoReel.scrollWidth - photoReel.clientWidth) {
+
+          scrollPosition = 0;
+
+        }
+
+      }
+
+
+
+      // Start auto-scrolling
+
+      setInterval(autoScroll, scrollInterval);
+
+    }
 
   });
 
@@ -126,10 +166,6 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">About</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Portfolio</span>
