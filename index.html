@@ -114,9 +114,9 @@ ul.task-list li input[type="checkbox"] {
 
       let scrollPosition = 0;
 
-      const scrollSpeed = 1; // Pixels to scroll per interval
+      const scrollSpeed = 2; // Increased scroll speed for better visibility
 
-      const scrollInterval = 20; // Interval in milliseconds
+      const scrollInterval = 30; // Adjusted interval for smoother scrolling
 
 
 
@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
 
         if (scrollPosition >= photoReel.scrollWidth - photoReel.clientWidth) {
 
-          scrollPosition = 0;
+          scrollPosition = 0; // Reset to the beginning
 
         }
 
@@ -142,7 +142,25 @@ ul.task-list li input[type="checkbox"] {
 
       // Start auto-scrolling
 
-      setInterval(autoScroll, scrollInterval);
+      let autoScrollInterval = setInterval(autoScroll, scrollInterval);
+
+
+
+      // Add hover behavior to pause scrolling
+
+      photoReel.addEventListener('mouseover', () => {
+
+        clearInterval(autoScrollInterval);
+
+      });
+
+
+
+      photoReel.addEventListener('mouseout', () => {
+
+        autoScrollInterval = setInterval(autoScroll, scrollInterval);
+
+      });
 
     }
 
@@ -184,25 +202,6 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./gallery.html">
  <span class="dropdown-text">Gallery</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-collection-and-production-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Data Collection and Production Assignments</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data-collection-and-production-assignments">    
-        <li>
-    <a class="dropdown-item" href="./Assignments/Assignment2.html">
- <span class="dropdown-text">Assignment 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Assignments/Assignment3.html">
- <span class="dropdown-text">Assignment 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Assignments/Assignment4.html">
- <span class="dropdown-text">Assignment 4</span></a>
   </li>  
     </ul>
   </li>
@@ -261,8 +260,17 @@ Welcome to Habib’s website
 </section>
 <section id="photo-reel" class="level2">
 <h2 class="anchored" data-anchor-id="photo-reel">Photo Reel</h2>
-<div class="photo-reel">
-<p><img src="images/Salman and Nabila Wedding.jpg" alt="Salman and Nabila Wedding"> <img src="images/Salmans Graduation Texas State University.jpg" alt="Salman's Graduation"> <img src="images/Salman with Carlton.jpg" alt="Salman with Carlton"> <img src="images/Salman with Parents on Wedding.jpg" alt="Salman with Parents on Wedding"> <img src="images/Salman Friends Set.jpg" alt="Salman Friends Set"> <img src="images/Salman Fuchka Jackson Heights.jpg" alt="Salman Fuchka Jackson Heights"> <img src="images/Salman Friends Building Manhattan.jpg" alt="Salman Friends Building Manhattan"> <img src="images/Salman Seinfeld.jpg" alt="Salman Seinfeld"> <img src="images/Salman Capitol Hill.jpg" alt="Salman Capitol Hill"> <img src="images/Salman Statue of Liberty.jpg" alt="Salman Statue of Liberty"> <img src="images/Salman and UTD cohort.jpg" alt="Salman and UTD cohort"> <img src="images/Salman ASPA Dr Meghna Sabharwal.jpg" alt="Salman ASPA Dr Meghna Sabharwal"> <img src="images/Salman and Dr Harisur Rahman.jpg" alt="Salman and Dr Harisur Rahman"> <img src="images/Salman and Mark.jpg" alt="Salman and Mark"></p>
+<div class="photo-slideshow">
+<button class="prev-btn">❮</button>
+<div class="slideshow-container">
+<pre><code>&lt;img src="images/Salman and Nabila Wedding.jpg" alt="Salman and Nabila Wedding" class="slideshow-image"&gt;
+&lt;img src="images/Salmans Graduation Texas State University.jpg" alt="Salman's Graduation" class="slideshow-image"&gt;
+&lt;img src="images/Salman with Carlton.jpg" alt="Salman with Carlton" class="slideshow-image"&gt;
+&lt;img src="images/Salman with Parents on Wedding.jpg" alt="Salman with Parents on Wedding" class="slideshow-image"&gt;
+&lt;img src="images/Salman Friends Set.jpg" alt="Salman Friends Set" class="slideshow-image"&gt;
+&lt;!-- Add more images as needed --&gt;</code></pre>
+</div>
+<p><button class="next-btn">❯</button></p>
 </div>
 <hr>
 </section>
@@ -289,10 +297,8 @@ Welcome to Habib’s website
 <section id="skills-and-tools" class="level2">
 <h2 class="anchored" data-anchor-id="skills-and-tools">Skills and Tools</h2>
 <ul>
-<li><strong>Programming Languages</strong>: Python, R, STATA, SPSS<br>
-</li>
-<li><strong>Data Analysis</strong>: Regression, K-means Clustering, Factor Analysis, Sentiment Analysis<br>
-</li>
+<li><strong>Programming Languages</strong>: Python, R, STATA, SPSS</li>
+<li><strong>Data Analysis</strong>: Regression, K-means Clustering, Factor Analysis, Sentiment Analysis</li>
 <li><strong>Visualization Tools</strong>: Power BI, Tableau, Excel</li>
 </ul>
 <hr>
@@ -301,10 +307,8 @@ Welcome to Habib’s website
 <h2 class="anchored" data-anchor-id="connect-with-me">Connect with Me</h2>
 <p>I am always open to collaborations, discussions, and opportunities to share knowledge. Feel free to reach out!</p>
 <ul>
-<li><strong>Email</strong>: <a href="mailto:salman.habib@utdallas.edu">Salman.Habib@UTDallas.edu</a><br>
-</li>
-<li><strong>GitHub</strong>: <a href="https://github.com/salmanhabib01">github.com/salmanhabib01</a><br>
-</li>
+<li><strong>Email</strong>: <a href="mailto:salman.habib@utdallas.edu">Salman.Habib@UTDallas.edu</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/salmanhabib01">github.com/salmanhabib01</a></li>
 <li><strong>LinkedIn</strong>: <a href="https://linkedin.com/in/salmanbinhabib">linkedin.com/in/salmanbinhabib</a></li>
 </ul>
 <hr>

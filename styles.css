@@ -18,11 +18,15 @@ body {
   color: #333;
   font-weight: bold;
   text-transform: uppercase;
+  padding: 10px;
+  display: inline-block;
 }
 
 .navbar a:hover {
   color: #0056b3;
-  text-decoration: none;
+  text-decoration: underline;
+  background-color: #f0f8ff; /* Slight hover background */
+  border-radius: 5px;
 }
 
 /* Home Title Styling */
@@ -50,6 +54,7 @@ p {
 /* Links */
 a {
   color: #007bff;
+  transition: color 0.2s ease-in-out; /* Smooth hover transition */
 }
 
 a:hover {
@@ -63,44 +68,57 @@ img {
   height: auto;
   margin: 10px 0;
   border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
-/* Photo Reel Styling */
-.photo-reel {
-  display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  gap: 15px; /* Space between photos */
-  padding: 10px;
-  background-color: #fdfdfd; /* Light background for contrast */
-  border: 1px solid #ddd;
+img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Slideshow Styling */
+.photo-slideshow {
+  position: relative;
+  max-width: 100%; /* Responsive width */
+  margin: 20px auto;
+  overflow: hidden;
   border-radius: 5px;
-  scroll-behavior: smooth; /* Smooth scrolling */
-  scroll-snap-type: x mandatory; /* Snap scrolling for better UX */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.photo-reel::-webkit-scrollbar {
-  height: 8px; /* Customize scrollbar height */
+.slideshow-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
 }
 
-.photo-reel::-webkit-scrollbar-thumb {
-  background-color: #0056b3; /* Thumb color */
-  border-radius: 4px;
+.slideshow-image {
+  min-width: 100%; /* Show one image at a time */
 }
 
-.photo-reel::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1;
+  border-radius: 50%;
 }
 
-.photo-reel img {
-  max-height: 150px; /* Limit the height of the images */
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  transition: transform 0.3s ease; /* Smooth zoom effect */
-  scroll-snap-align: center; /* Snap to center */
+.prev-btn {
+  left: 10px;
 }
 
-.photo-reel img:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+.next-btn {
+  right: 10px;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Footer */
@@ -114,6 +132,7 @@ footer {
 
 footer a {
   color: #007bff;
+  transition: color 0.2s ease-in-out;
 }
 
 footer a:hover {
@@ -132,6 +151,7 @@ footer a:hover {
 
 .toc a {
   color: #007bff;
+  transition: color 0.2s ease-in-out;
 }
 
 .toc a:hover {
@@ -147,6 +167,15 @@ section {
 .quarto-search {
   margin-top: 8px;
   float: right;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.quarto-search:focus-within {
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.2); /* Highlight on focus */
 }
 
 /* Adjust Sidebar */
@@ -156,4 +185,40 @@ aside {
   border: 1px solid #ddd;
   background-color: #fdfdfd;
   border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar a {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .photo-reel img {
+    max-height: 120px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
 }
