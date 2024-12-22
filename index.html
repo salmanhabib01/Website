@@ -96,77 +96,79 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<!-- Custom JavaScript -->
+<!-- Custom JavaScript for Slideshow -->
 
 <script>
 
   document.addEventListener('DOMContentLoaded', () => {
 
-    console.log("Welcome to Salman Bin Habib's portfolio website!");
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    const slides = document.querySelectorAll('.slideshow-image');
+
+    const prevBtn = document.querySelector('.prev-btn');
+
+    const nextBtn = document.querySelector('.next-btn');
 
 
 
-    // Auto-scroll logic for the photo reel
+    // Debugging Logs
 
-    const photoReel = document.querySelector('.photo-reel');
+    if (!slideshowContainer || slides.length === 0 || !prevBtn || !nextBtn) {
 
-    if (photoReel) {
+      console.error("Slideshow elements are missing!");
 
-      let scrollPosition = 0;
-
-      const scrollSpeed = 2; // Increased scroll speed for better visibility
-
-      const scrollInterval = 30; // Adjusted interval for smoother scrolling
-
-
-
-      function autoScroll() {
-
-        scrollPosition += scrollSpeed;
-
-        photoReel.scrollLeft = scrollPosition;
-
-
-
-        // Reset scroll position when reaching the end
-
-        if (scrollPosition >= photoReel.scrollWidth - photoReel.clientWidth) {
-
-          scrollPosition = 0; // Reset to the beginning
-
-        }
-
-      }
-
-
-
-      // Start auto-scrolling
-
-      let autoScrollInterval = setInterval(autoScroll, scrollInterval);
-
-
-
-      // Add hover behavior to pause scrolling
-
-      photoReel.addEventListener('mouseover', () => {
-
-        clearInterval(autoScrollInterval);
-
-      });
-
-
-
-      photoReel.addEventListener('mouseout', () => {
-
-        autoScrollInterval = setInterval(autoScroll, scrollInterval);
-
-      });
+      return;
 
     }
+
+
+
+    let currentIndex = 0;
+
+
+
+    function updateSlidePosition() {
+
+      slideshowContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    }
+
+
+
+    prevBtn.addEventListener('click', () => {
+
+      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+
+      updateSlidePosition();
+
+    });
+
+
+
+    nextBtn.addEventListener('click', () => {
+
+      currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+
+      updateSlidePosition();
+
+    });
+
+
+
+    // Auto-slide
+
+    setInterval(() => {
+
+      nextBtn.click();
+
+    }, 5000); // 5 seconds interval
 
   });
 
 </script>
+
+
 
 
 

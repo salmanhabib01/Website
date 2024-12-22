@@ -25,7 +25,7 @@ body {
 .navbar a:hover {
   color: #0056b3;
   text-decoration: underline;
-  background-color: #f0f8ff; /* Slight hover background */
+  background-color: #f0f8ff;
   border-radius: 5px;
 }
 
@@ -54,7 +54,7 @@ p {
 /* Links */
 a {
   color: #007bff;
-  transition: color 0.2s ease-in-out; /* Smooth hover transition */
+  transition: color 0.2s ease-in-out;
 }
 
 a:hover {
@@ -68,18 +68,18 @@ img {
   height: auto;
   margin: 10px 0;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: transform 0.2s ease; /* Smooth hover effect */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 img:hover {
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 /* Slideshow Styling */
 .photo-slideshow {
   position: relative;
-  max-width: 100%; /* Responsive width */
+  max-width: 100%;
   margin: 20px auto;
   overflow: hidden;
   border-radius: 5px;
@@ -88,11 +88,12 @@ img:hover {
 
 .slideshow-container {
   display: flex;
-  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+  transition: transform 0.5s ease-in-out;
 }
 
 .slideshow-image {
-  min-width: 100%; /* Show one image at a time */
+  min-width: 100%;
+  display: block;
 }
 
 .prev-btn, .next-btn {
@@ -121,6 +122,14 @@ img:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .prev-btn, .next-btn {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
 /* Footer */
 footer {
   background-color: #ffffff;
@@ -140,69 +149,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Table of Contents */
-.toc {
-  background-color: #fdfdfd;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.toc a {
-  color: #007bff;
-  transition: color 0.2s ease-in-out;
-}
-
-.toc a:hover {
-  color: #0056b3;
-}
-
-/* Spacing between sections */
-section {
-  margin-bottom: 40px;
-}
-
-/* Search Bar */
-.quarto-search {
-  margin-top: 8px;
-  float: right;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.quarto-search:focus-within {
-  background-color: #ffffff;
-  box-shadow: 0 0 8px rgba(0, 86, 179, 0.2); /* Highlight on focus */
-}
-
-/* Adjust Sidebar */
-aside {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: #fdfdfd;
-  border-radius: 5px;
-}
-
-/* Button Styling */
-button {
-  font-family: 'Open Sans', sans-serif;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar a {
@@ -212,10 +158,6 @@ button:hover {
 
   .home-title {
     font-size: 2rem;
-  }
-
-  .photo-reel img {
-    max-height: 120px;
   }
 
   footer {
