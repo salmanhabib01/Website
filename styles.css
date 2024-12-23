@@ -93,7 +93,7 @@ img:hover {
 
 .slideshow-image {
   min-width: 100%;
-  display: block;
+  height: auto;
 }
 
 .prev-btn, .next-btn {
