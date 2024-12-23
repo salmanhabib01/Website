@@ -79,10 +79,9 @@ img:hover {
 /* Slideshow Styling */
 .photo-slideshow {
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 20px auto;
   overflow: hidden;
-  height: 4oopx;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -121,47 +120,4 @@ img:hover {
 
 .prev-btn:hover, .next-btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Add responsiveness for smaller screens */
-@media (max-width: 768px) {
-  .prev-btn, .next-btn {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
-/* Footer */
-footer {
-  background-color: #ffffff;
-  border-top: 1px solid #ddd;
-  padding: 15px 0;
-  text-align: center;
-  color: #666;
-}
-
-footer a {
-  color: #007bff;
-  transition: color 0.2s ease-in-out;
-}
-
-footer a:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .navbar a {
-    padding: 8px;
-    font-size: 0.9rem;
-  }
-
-  .home-title {
-    font-size: 2rem;
-  }
-
-  footer {
-    font-size: 0.9rem;
-  }
 }
