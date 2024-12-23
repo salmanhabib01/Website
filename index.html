@@ -136,6 +136,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+    // Event Listeners for Buttons
+
     prevBtn.addEventListener('click', () => {
 
       currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
@@ -156,19 +158,39 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-    // Auto-slide
+    // Auto-slide every 5 seconds
 
-    setInterval(() => {
+    let autoSlideInterval = setInterval(() => {
 
       nextBtn.click();
 
     }, 5000); // 5 seconds interval
 
+
+
+    // Pause auto-slide on hover
+
+    slideshowContainer.addEventListener('mouseover', () => {
+
+      clearInterval(autoSlideInterval);
+
+    });
+
+
+
+    slideshowContainer.addEventListener('mouseout', () => {
+
+      autoSlideInterval = setInterval(() => {
+
+        nextBtn.click();
+
+      }, 5000);
+
+    });
+
   });
 
 </script>
-
-
 
 
 
@@ -229,6 +251,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a></li>
   <li><a href="#photo-reel" id="toc-photo-reel" class="nav-link" data-scroll-target="#photo-reel">Photo Reel</a></li>
+  <li><a href="#photo-reel-1" id="toc-photo-reel-1" class="nav-link" data-scroll-target="#photo-reel-1">Photo Reel</a></li>
   <li><a href="#key-highlights" id="toc-key-highlights" class="nav-link" data-scroll-target="#key-highlights">Key Highlights</a></li>
   <li><a href="#research-projects" id="toc-research-projects" class="nav-link" data-scroll-target="#research-projects">Research &amp; Projects</a></li>
   <li><a href="#skills-and-tools" id="toc-skills-and-tools" class="nav-link" data-scroll-target="#skills-and-tools">Skills and Tools</a></li>
@@ -262,6 +285,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="photo-reel" class="level2">
 <h2 class="anchored" data-anchor-id="photo-reel">Photo Reel</h2>
+</section>
+<section id="photo-reel-1" class="level2">
+<h2 class="anchored" data-anchor-id="photo-reel-1">Photo Reel</h2>
 <div class="{raw}">
 <div class="photo-slideshow">
 <button class="prev-btn">❮</button>

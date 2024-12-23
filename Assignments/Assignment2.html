@@ -102,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <!-- Google Fonts -->
 
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet">
 
 
 
@@ -124,15 +124,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<!-- Custom JavaScript -->
+<!-- Link to External Stylesheet -->
+
+<link rel="stylesheet" href="styles.css">
+
+
+
+<!-- Custom JavaScript for Slideshow -->
 
 <script>
 
-  // Display a message in the browser console when the page is fully loaded
-
   document.addEventListener('DOMContentLoaded', () => {
 
-    console.log("Welcome to Salman Bin Habib's portfolio website!");
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    const slides = document.querySelectorAll('.slideshow-image');
+
+    const prevBtn = document.querySelector('.prev-btn');
+
+    const nextBtn = document.querySelector('.next-btn');
+
+
+
+    // Debugging Logs
+
+    if (!slideshowContainer || slides.length === 0 || !prevBtn || !nextBtn) {
+
+      console.error("Slideshow elements are missing!");
+
+      return;
+
+    }
+
+
+
+    let currentIndex = 0;
+
+
+
+    function updateSlidePosition() {
+
+      slideshowContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    }
+
+
+
+    // Event Listeners for Buttons
+
+    prevBtn.addEventListener('click', () => {
+
+      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+
+      updateSlidePosition();
+
+    });
+
+
+
+    nextBtn.addEventListener('click', () => {
+
+      currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+
+      updateSlidePosition();
+
+    });
+
+
+
+    // Auto-slide every 5 seconds
+
+    let autoSlideInterval = setInterval(() => {
+
+      nextBtn.click();
+
+    }, 5000); // 5 seconds interval
+
+
+
+    // Pause auto-slide on hover
+
+    slideshowContainer.addEventListener('mouseover', () => {
+
+      clearInterval(autoSlideInterval);
+
+    });
+
+
+
+    slideshowContainer.addEventListener('mouseout', () => {
+
+      autoSlideInterval = setInterval(() => {
+
+        nextBtn.click();
+
+      }, 5000);
+
+    });
 
   });
 
@@ -172,25 +260,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../gallery.html">
  <span class="dropdown-text">Gallery</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-collection-and-production-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Data Collection and Production Assignments</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-data-collection-and-production-assignments">    
-        <li>
-    <a class="dropdown-item" href="../Assignments/Assignment2.html">
- <span class="dropdown-text">Assignment 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Assignments/Assignment3.html">
- <span class="dropdown-text">Assignment 3</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Assignments/Assignment4.html">
- <span class="dropdown-text">Assignment 4</span></a>
   </li>  
     </ul>
   </li>
