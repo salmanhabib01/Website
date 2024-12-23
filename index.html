@@ -114,6 +114,18 @@ ul.task-list li input[type="checkbox"] {
 
     // Debugging Logs
 
+    console.log('Slideshow Container:', slideshowContainer);
+
+    console.log('Slides:', slides);
+
+    console.log('Previous Button:', prevBtn);
+
+    console.log('Next Button:', nextBtn);
+
+
+
+    // Check if elements are found
+
     if (!slideshowContainer || slides.length === 0 || !prevBtn || !nextBtn) {
 
       console.error("Slideshow elements are missing!");
@@ -136,8 +148,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-    // Event Listeners for Buttons
-
     prevBtn.addEventListener('click', () => {
 
       currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
@@ -158,35 +168,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-    // Auto-slide every 5 seconds
+    // Auto-slide
 
-    let autoSlideInterval = setInterval(() => {
+    setInterval(() => {
 
       nextBtn.click();
 
     }, 5000); // 5 seconds interval
-
-
-
-    // Pause auto-slide on hover
-
-    slideshowContainer.addEventListener('mouseover', () => {
-
-      clearInterval(autoSlideInterval);
-
-    });
-
-
-
-    slideshowContainer.addEventListener('mouseout', () => {
-
-      autoSlideInterval = setInterval(() => {
-
-        nextBtn.click();
-
-      }, 5000);
-
-    });
 
   });
 
