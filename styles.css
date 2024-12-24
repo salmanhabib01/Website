@@ -62,6 +62,17 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Styling for the intro image */
+.intro-img {
+  display: block;
+  margin: 20px auto; /* Center the image */
+  border-radius: 8px; /* Slightly rounded corners */
+  max-width: 100%; /* Ensures responsiveness */
+  width: 300px; /* Default size for larger screens */
+  height: auto; /* Maintain aspect ratio */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
 /* Images */
 img {
   max-width: 100%;
