@@ -100,73 +100,77 @@ ul.task-list li input[type="checkbox"] {
 
 <script>
 
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    const slideshowContainer = document.querySelector('.slideshow-container');
+  const slides = document.querySelectorAll('.slideshow-image');
 
-    const slides = document.querySelectorAll('.slideshow-image');
+  const prevBtn = document.querySelector('.prev-btn');
 
-    const prevBtn = document.querySelector('.prev-btn');
-
-    const nextBtn = document.querySelector('.next-btn');
+  const nextBtn = document.querySelector('.next-btn');
 
 
 
-    // Debugging Logs
+  // Debugging: Check if elements are correctly selected
 
-    console.log('Slideshow Container:', slideshowContainer);
+  console.log('Slides:', slides);
 
-    console.log('Slides:', slides);
+  console.log('Previous Button:', prevBtn);
 
-    console.log('Previous Button:', prevBtn);
-
-    console.log('Next Button:', nextBtn);
+  console.log('Next Button:', nextBtn);
 
 
 
-    // Check if elements are found
+  if (!slides.length || !prevBtn || !nextBtn) {
 
-    if (!slideshowContainer || slides.length === 0 || !prevBtn || !nextBtn) {
+    console.error('Slideshow elements are missing!');
 
-      console.error("Slideshow elements are missing!");
+    return;
 
-      return;
-
-    }
+  }
 
 
 
-    let currentIndex = 0;
+  let currentIndex = 0;
 
 
 
-    function updateSlidePosition() {
+  function updateSlidePosition() {
 
-      slideshowContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    slides.forEach((slide, index) => {
 
-    }
-
-
-
-    prevBtn.addEventListener('click', () => {
-
-      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
-
-      updateSlidePosition();
+      slide.style.display = index === currentIndex ? 'block' : 'none';
 
     });
 
+  }
 
 
-    nextBtn.addEventListener('click', () => {
 
-      currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+  prevBtn.addEventListener('click', () => {
 
-      updateSlidePosition();
+    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
 
-    });
+    updateSlidePosition();
 
   });
+
+
+
+  nextBtn.addEventListener('click', () => {
+
+    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+
+    updateSlidePosition();
+
+  });
+
+
+
+  // Initialize slideshow
+
+  updateSlidePosition();
+
+});
 
 </script>
 

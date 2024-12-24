@@ -100,82 +100,184 @@ ul.task-list li input[type="checkbox"] {
 
 <script>
 
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    const slideshowContainer = document.querySelector('.slideshow-container');
+  const slides = document.querySelectorAll('.slideshow-image');
 
-    const slides = document.querySelectorAll('.slideshow-image');
+  const captions = document.querySelectorAll('.slideshow-caption');
 
-    const prevBtn = document.querySelector('.prev-btn');
+  const prevBtn = document.querySelector('.prev-btn');
 
-    const nextBtn = document.querySelector('.next-btn');
+  const nextBtn = document.querySelector('.next-btn');
 
+  const modal = document.querySelector('.modal');
 
+  const modalImg = document.querySelector('.modal-content');
 
-    // Debugging Logs
+  const modalCaption = document.querySelector('.modal-caption');
 
-    console.log('Slideshow Container:', slideshowContainer);
-
-    console.log('Slides:', slides);
-
-    console.log('Previous Button:', prevBtn);
-
-    console.log('Next Button:', nextBtn);
+  const closeModal = document.querySelector('.close');
 
 
 
-    // Check if elements are found
+  // Debugging: Check if elements are correctly selected
 
-    if (!slideshowContainer || slides.length === 0 || !prevBtn || !nextBtn) {
+  console.log('Slides:', slides);
 
-      console.error("Slideshow elements are missing!");
+  console.log('Captions:', captions);
 
-      return;
+  console.log('Previous Button:', prevBtn);
 
-    }
+  console.log('Next Button:', nextBtn);
 
-
-
-    let currentIndex = 0;
+  console.log('Modal:', modal);
 
 
 
-    function updateSlidePosition() {
+  if (!slides.length || !prevBtn || !nextBtn || !modal || !modalImg || !closeModal) {
 
-      slideshowContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    console.error('Slideshow or modal elements are missing!');
 
-    }
+    return;
+
+  }
 
 
 
-    prevBtn.addEventListener('click', () => {
+  let currentIndex = 0;
 
-      currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
 
-      updateSlidePosition();
+
+  function updateSlidePosition() {
+
+    slides.forEach((slide, index) => {
+
+      slide.classList.toggle('active', index === currentIndex);
+
+      slide.style.display = index === currentIndex ? 'block' : 'none';
 
     });
 
 
 
-    nextBtn.addEventListener('click', () => {
+    if (captions.length > 0) {
 
-      currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+      const currentCaption = slides[currentIndex].dataset.caption;
 
-      updateSlidePosition();
+      const captionElement = document.querySelector('.slideshow-caption');
+
+      if (captionElement) captionElement.textContent = currentCaption || '';
+
+    }
+
+  }
+
+
+
+  prevBtn.addEventListener('click', () => {
+
+    currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+
+    updateSlidePosition();
+
+  });
+
+
+
+  nextBtn.addEventListener('click', () => {
+
+    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+
+    updateSlidePosition();
+
+  });
+
+
+
+  // Image click event to open modal
+
+  slides.forEach((slide, index) => {
+
+    slide.addEventListener('click', () => {
+
+      modal.style.display = 'block';
+
+      modalImg.src = slide.src;
+
+      modalCaption.textContent = slide.dataset.caption || '';
 
     });
 
   });
 
+
+
+  // Close modal
+
+  closeModal.addEventListener('click', () => {
+
+    modal.style.display = 'none';
+
+  });
+
+
+
+  // Close modal when clicking outside the image
+
+  window.addEventListener('click', (event) => {
+
+    if (event.target === modal) {
+
+      modal.style.display = 'none';
+
+    }
+
+  });
+
+
+
+  // Close modal on ESC key
+
+  window.addEventListener('keydown', (event) => {
+
+    if (event.key === 'Escape') {
+
+      modal.style.display = 'none';
+
+    }
+
+  });
+
+
+
+  // Initialize slideshow
+
+  updateSlidePosition();
+
+});
+
 </script>
 
 
 
-<link rel="stylesheet" href="styles.css">
-</head>
+<!-- Modal Structure for Enlarged Images -->
 
-<body class="nav-fixed">
+</head><body class="nav-fixed"><div class="modal">
+
+  <span class="close">×</span>
+
+  <img class="modal-content" alt="Enlarged image">
+
+  <div class="modal-caption"></div>
+
+</div>
+
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -262,16 +364,26 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="photo-reel" class="level2">
 <h2 class="anchored" data-anchor-id="photo-reel">Photo Reel</h2>
-<div class="photo-slideshow">
-<button class="prev-btn">❮</button>
-<div class="slideshow-container">
-<pre><code>&lt;img src="images/Salman and Nabila Wedding.jpg" alt="Salman and Nabila Wedding" class="slideshow-image"&gt;
-&lt;img src="images/Salmans Graduation Texas State University.jpg" alt="Salman's Graduation" class="slideshow-image"&gt;
-&lt;img src="images/Salman with Carlton.jpg" alt="Salman with Carlton" class="slideshow-image"&gt;
-&lt;img src="images/Salman with Parents on Wedding.jpg" alt="Salman with Parents on Wedding" class="slideshow-image"&gt;
-&lt;img src="images/Salman Friends Set.jpg" alt="Salman Friends Set" class="slideshow-image"&gt;</code></pre>
+<section id="photo-reel" class="level2">
+<div class="photo-slideshow" {="html}">
+    <button class="prev-btn">❮</button>
+    <div class="slideshow-container">
+      <img src="images/Salman and Nabila Wedding.jpg" alt="Salman and Nabila Wedding" class="slideshow-image active" data-caption="Salman and Nabila Wedding">
+      <img src="images/Salmans Graduation Texas State University.jpg" alt="Salman's Graduation" class="slideshow-image" data-caption="Salman's Graduation">
+      <img src="images/Salman with Carlton.jpg" alt="Salman with Carlton" class="slideshow-image" data-caption="Salman with Carlton">
+      <img src="images/Salman with Parents on Wedding.jpg" alt="Salman with Parents on Wedding" class="slideshow-image" data-caption="Salman with Parents on Wedding">
+      <img src="images/Salman Friends Set.jpg" alt="Salman Friends Set" class="slideshow-image" data-caption="Salman Friends Set">
+    </div>
+    <div class="slideshow-caption"></div>
+    <button class="next-btn">❯</button>
+  </div>
+</section>
+<!-- Modal for Enlarged Images -->
+<div class="modal">
+<span class="close">×</span> <img class="modal-content" alt="Enlarged image">
+<div class="modal-caption">
+
 </div>
-<p><button class="next-btn">❯</button></p>
 </div>
 <hr>
 </section>
