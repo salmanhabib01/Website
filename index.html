@@ -118,29 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const closeModal = document.querySelector('.close');
 
-
-
-  // Debugging: Check if elements are correctly selected
-
-  console.log('Slides:', slides);
-
-  console.log('Captions:', captions);
-
-  console.log('Previous Button:', prevBtn);
-
-  console.log('Next Button:', nextBtn);
-
-  console.log('Modal:', modal);
-
-
-
-  if (!slides.length || !prevBtn || !nextBtn || !modal || !modalImg || !closeModal) {
-
-    console.error('Slideshow or modal elements are missing!');
-
-    return;
-
-  }
+  let autoSlideInterval;
 
 
 
@@ -174,11 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  function goToNextSlide() {
+
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    updateSlidePosition();
+
+  }
+
+
+
   prevBtn.addEventListener('click', () => {
 
     currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
 
     updateSlidePosition();
+
+    resetAutoSlide();
 
   });
 
@@ -186,15 +176,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nextBtn.addEventListener('click', () => {
 
-    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+    goToNextSlide();
 
-    updateSlidePosition();
+    resetAutoSlide();
 
   });
 
 
 
-  // Image click event to open modal
+  function startAutoSlide() {
+
+    autoSlideInterval = setInterval(goToNextSlide, 3000);
+
+  }
+
+
+
+  function resetAutoSlide() {
+
+    clearInterval(autoSlideInterval);
+
+    startAutoSlide();
+
+  }
+
+
 
   slides.forEach((slide, index) => {
 
@@ -212,8 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // Close modal
-
   closeModal.addEventListener('click', () => {
 
     modal.style.display = 'none';
@@ -221,8 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-
-  // Close modal when clicking outside the image
 
   window.addEventListener('click', (event) => {
 
@@ -236,8 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // Close modal on ESC key
-
   window.addEventListener('keydown', (event) => {
 
     if (event.key === 'Escape') {
@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // Initialize slideshow
-
   updateSlidePosition();
+
+  startAutoSlide();
 
 });
 
@@ -271,6 +271,38 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="modal-caption"></div>
 
 </div>
+
+
+
+<!-- Script for Automating External Links -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const links = document.querySelectorAll('a[href]');
+
+
+
+  links.forEach(link => {
+
+    const isExternal = link.hostname !== window.location.hostname;
+
+
+
+    if (isExternal) {
+
+      link.setAttribute('target', '_blank');
+
+      link.setAttribute('rel', 'noopener noreferrer');
+
+    }
+
+  });
+
+});
+
+</script>
 
 
 

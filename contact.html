@@ -104,29 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const slides = document.querySelectorAll('.slideshow-image');
 
+  const captions = document.querySelectorAll('.slideshow-caption');
+
   const prevBtn = document.querySelector('.prev-btn');
 
   const nextBtn = document.querySelector('.next-btn');
 
+  const modal = document.querySelector('.modal');
 
+  const modalImg = document.querySelector('.modal-content');
 
-  // Debugging: Check if elements are correctly selected
+  const modalCaption = document.querySelector('.modal-caption');
 
-  console.log('Slides:', slides);
+  const closeModal = document.querySelector('.close');
 
-  console.log('Previous Button:', prevBtn);
-
-  console.log('Next Button:', nextBtn);
-
-
-
-  if (!slides.length || !prevBtn || !nextBtn) {
-
-    console.error('Slideshow elements are missing!');
-
-    return;
-
-  }
+  let autoSlideInterval;
 
 
 
@@ -138,9 +130,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     slides.forEach((slide, index) => {
 
+      slide.classList.toggle('active', index === currentIndex);
+
       slide.style.display = index === currentIndex ? 'block' : 'none';
 
     });
+
+
+
+    if (captions.length > 0) {
+
+      const currentCaption = slides[currentIndex].dataset.caption;
+
+      const captionElement = document.querySelector('.slideshow-caption');
+
+      if (captionElement) captionElement.textContent = currentCaption || '';
+
+    }
+
+  }
+
+
+
+  function goToNextSlide() {
+
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    updateSlidePosition();
 
   }
 
@@ -152,23 +168,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateSlidePosition();
 
+    resetAutoSlide();
+
   });
 
 
 
   nextBtn.addEventListener('click', () => {
 
-    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+    goToNextSlide();
 
-    updateSlidePosition();
+    resetAutoSlide();
 
   });
 
 
 
-  // Initialize slideshow
+  function startAutoSlide() {
+
+    autoSlideInterval = setInterval(goToNextSlide, 3000);
+
+  }
+
+
+
+  function resetAutoSlide() {
+
+    clearInterval(autoSlideInterval);
+
+    startAutoSlide();
+
+  }
+
+
+
+  slides.forEach((slide, index) => {
+
+    slide.addEventListener('click', () => {
+
+      modal.style.display = 'block';
+
+      modalImg.src = slide.src;
+
+      modalCaption.textContent = slide.dataset.caption || '';
+
+    });
+
+  });
+
+
+
+  closeModal.addEventListener('click', () => {
+
+    modal.style.display = 'none';
+
+  });
+
+
+
+  window.addEventListener('click', (event) => {
+
+    if (event.target === modal) {
+
+      modal.style.display = 'none';
+
+    }
+
+  });
+
+
+
+  window.addEventListener('keydown', (event) => {
+
+    if (event.key === 'Escape') {
+
+      modal.style.display = 'none';
+
+    }
+
+  });
+
+
 
   updateSlidePosition();
+
+  startAutoSlide();
+
+});
+
+</script>
+
+
+
+<!-- Modal Structure for Enlarged Images -->
+
+</head><body class="nav-fixed"><div class="modal">
+
+  <span class="close">×</span>
+
+  <img class="modal-content" alt="Enlarged image">
+
+  <div class="modal-caption"></div>
+
+</div>
+
+
+
+<!-- Script for Automating External Links -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const links = document.querySelectorAll('a[href]');
+
+
+
+  links.forEach(link => {
+
+    const isExternal = link.hostname !== window.location.hostname;
+
+
+
+    if (isExternal) {
+
+      link.setAttribute('target', '_blank');
+
+      link.setAttribute('rel', 'noopener noreferrer');
+
+    }
+
+  });
 
 });
 
@@ -177,9 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <link rel="stylesheet" href="styles.css">
-</head>
 
-<body class="nav-fixed">
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
