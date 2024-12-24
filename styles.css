@@ -79,7 +79,7 @@ img:hover {
 /* Slideshow Styling */
 .photo-slideshow {
   position: relative;
-  max-width: 600px;
+  max-width: 90%; /* Adjusted for smaller screens */
   margin: 20px auto;
   overflow: hidden;
   text-align: center;
@@ -179,4 +179,55 @@ img:hover {
 
 .close:hover {
   color: #bbb;
+}
+
+/* Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2rem;
+    margin: 15px 0;
+  }
+
+  .slideshow-caption {
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  .prev-btn, .next-btn {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  .navbar a {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .modal-content {
+    max-width: 95%; /* Increase image size for smaller screens */
+  }
+
+  .modal-caption {
+    font-size: 1rem; /* Slightly smaller caption for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 1.8rem;
+  }
+
+  .navbar a {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .slideshow-caption {
+    font-size: 0.8rem;
+  }
+
+  .prev-btn, .next-btn {
+    padding: 6px;
+    font-size: 14px;
+  }
 }

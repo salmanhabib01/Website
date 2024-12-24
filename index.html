@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta name="keywords" content="Salman Bin Habib, nonprofit research, blockchain policy, public administration, data visualization, public affairs">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
 
@@ -126,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // Update slide visibility and caption
+
   function updateSlidePosition() {
 
     slides.forEach((slide, index) => {
@@ -140,17 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (captions.length > 0) {
 
-      const currentCaption = slides[currentIndex].dataset.caption;
+      const currentCaption = slides[currentIndex]?.dataset.caption || '';
 
       const captionElement = document.querySelector('.slideshow-caption');
 
-      if (captionElement) captionElement.textContent = currentCaption || '';
+      if (captionElement) captionElement.textContent = currentCaption;
 
     }
 
   }
 
 
+
+  // Go to the next slide
 
   function goToNextSlide() {
 
@@ -161,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  // Go to the previous slide
 
   prevBtn.addEventListener('click', () => {
 
@@ -184,9 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // Auto-slide functionality
+
   function startAutoSlide() {
 
-    autoSlideInterval = setInterval(goToNextSlide, 3000);
+    autoSlideInterval = setInterval(goToNextSlide, 3000); // Auto-slide every 3 seconds
 
   }
 
@@ -201,6 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  // Modal handling
 
   slides.forEach((slide, index) => {
 
@@ -249,6 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+
+  // Initialize slideshow and auto-slide
 
   updateSlidePosition();
 
@@ -389,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Salman_Habib.jpg" class="img-circle img-fluid quarto-figure quarto-figure-center figure-img" style="float: left; margin-right: 20px;" width="336"></p>
+<p><img src="images/Salman_Habib.jpg" class="img-circle img-fluid quarto-figure quarto-figure-center figure-img" style="margin: auto; display: block; max-width: 200px; width: 100%;"></p>
 </figure>
 </div>
 <p>Hi, I’m Salman Bin Habib, a second-year Ph.D.&nbsp;student in <em>Public Affairs</em> at the <em>University of Texas at Dallas</em>. My academic journey is deeply rooted in a passion for advancing the <strong>financial health</strong>, <strong>fundraising efficiency</strong>, and <strong>policy frameworks</strong> of nonprofit organizations and local government. By integrating rigorous research with practical applications, I aim to bridge the gap between theory and real-world challenges, driving meaningful improvements in nonprofit performance and community impact.</p>
@@ -405,8 +417,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="photo-reel" class="level2">
 <h2 class="anchored" data-anchor-id="photo-reel">Photo Reel</h2>
 <section id="photo-reel" class="level2">
-<div class="photo-slideshow" {="html}">
-    <button class="prev-btn">❮</button>
+<div class="photo-slideshow" style="max-width: 100%; margin: auto;" {="html}">
+    <button class="prev-btn" style="font-size: 18px;">❮</button>
     <div class="slideshow-container">
       <img src="images/Salman and Nabila Wedding.jpg" alt="Salman and Nabila Wedding" class="slideshow-image active" data-caption="A photo of my wedding night with my wife Nabila Parijat">
       <img src="images/Salmans Graduation Texas State University.jpg" alt="Salman's Graduation" class="slideshow-image" data-caption="The day I graduated with my Masters degree from Texas State University">
@@ -414,8 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="images/Salman with Parents on Wedding.jpg" alt="Salman with Parents on Wedding" class="slideshow-image" data-caption="My lovely parents on my wedding day">
       <img src="images/Salman Friends Set.jpg" alt="Salman Friends Set" class="slideshow-image" data-caption="The Friends Experience! Ticking off the bucket list">
     </div>
-    <div class="slideshow-caption"></div>
-    <button class="next-btn">❯</button>
+    <div class="slideshow-caption" style="padding: 10px; font-size: 1rem; color: #333;"></div>
+    <button class="next-btn" style="font-size: 18px;">❯</button>
   </div>
 </section>
 <!-- Modal for Enlarged Images -->

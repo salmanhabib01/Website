@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta name="keywords" content="Salman Bin Habib, nonprofit research, blockchain policy, public administration, data visualization, public affairs">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
 
@@ -126,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // Update slide visibility and caption
+
   function updateSlidePosition() {
 
     slides.forEach((slide, index) => {
@@ -140,17 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (captions.length > 0) {
 
-      const currentCaption = slides[currentIndex].dataset.caption;
+      const currentCaption = slides[currentIndex]?.dataset.caption || '';
 
       const captionElement = document.querySelector('.slideshow-caption');
 
-      if (captionElement) captionElement.textContent = currentCaption || '';
+      if (captionElement) captionElement.textContent = currentCaption;
 
     }
 
   }
 
 
+
+  // Go to the next slide
 
   function goToNextSlide() {
 
@@ -161,6 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  // Go to the previous slide
 
   prevBtn.addEventListener('click', () => {
 
@@ -184,9 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // Auto-slide functionality
+
   function startAutoSlide() {
 
-    autoSlideInterval = setInterval(goToNextSlide, 3000);
+    autoSlideInterval = setInterval(goToNextSlide, 3000); // Auto-slide every 3 seconds
 
   }
 
@@ -201,6 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  // Modal handling
 
   slides.forEach((slide, index) => {
 
@@ -249,6 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+
+  // Initialize slideshow and auto-slide
 
   updateSlidePosition();
 
